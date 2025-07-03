@@ -8,17 +8,41 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var openIAP = false
+    @StateObject private var status = SubscriptionStatus()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 20) {
+                HStack {
+                    Text("Current Plan:")
+                    Text(status.accessLevel)
+                        .foregroundColor(.blue)
+                }
+                .bold()
+
+                Button("Buy Subscription") {
+                    openIAP.toggle()
+                }
+            }
+            .padding()
+            .navigationTitle("RC Test")
+            .onAppear {
+                status.checkEntitlement()
+            }
+            .sheet(isPresented: $openIAP, onDismiss: {
+                status.checkEntitlement() // refresh after purchase
+            }) {
+                IAPScreen()
+            }
         }
-        .padding()
     }
 }
+
 
 #Preview {
     ContentView()
 }
+
+
+

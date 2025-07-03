@@ -6,7 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EE120AA22E169EF900BDDD95 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE120AA12E169EF900BDDD95 /* StoreKit.framework */; };
+		EE120AA52E16B4D500BDDD95 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = EE120AA42E16B4D500BDDD95 /* RevenueCat */; };
+		EE120AA72E16B4D500BDDD95 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = EE120AA62E16B4D500BDDD95 /* RevenueCatUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		EE120AA12E169EF900BDDD95 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		EE1D0B3D2E12B95400B7FD77 /* PaymentGatewaysApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentGatewaysApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -23,16 +30,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE120AA52E16B4D500BDDD95 /* RevenueCat in Frameworks */,
+				EE120AA22E169EF900BDDD95 /* StoreKit.framework in Frameworks */,
+				EE120AA72E16B4D500BDDD95 /* RevenueCatUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE120AA02E169EF900BDDD95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE120AA12E169EF900BDDD95 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EE1D0B342E12B95400B7FD77 = {
 			isa = PBXGroup;
 			children = (
 				EE1D0B3F2E12B95400B7FD77 /* PaymentGatewaysApp */,
+				EE120AA02E169EF900BDDD95 /* Frameworks */,
 				EE1D0B3E2E12B95400B7FD77 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +84,8 @@
 			);
 			name = PaymentGatewaysApp;
 			packageProductDependencies = (
+				EE120AA42E16B4D500BDDD95 /* RevenueCat */,
+				EE120AA62E16B4D500BDDD95 /* RevenueCatUI */,
 			);
 			productName = PaymentGatewaysApp;
 			productReference = EE1D0B3D2E12B95400B7FD77 /* PaymentGatewaysApp.app */;
@@ -94,6 +115,9 @@
 			);
 			mainGroup = EE1D0B342E12B95400B7FD77;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EE120AA32E16B4D500BDDD95 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EE1D0B3E2E12B95400B7FD77 /* Products */;
 			projectDirPath = "";
@@ -324,6 +348,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EE120AA32E16B4D500BDDD95 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.30.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE120AA42E16B4D500BDDD95 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE120AA32E16B4D500BDDD95 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+		EE120AA62E16B4D500BDDD95 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE120AA32E16B4D500BDDD95 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCatUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EE1D0B352E12B95400B7FD77 /* Project object */;
 }

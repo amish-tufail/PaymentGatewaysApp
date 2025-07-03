@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import RevenueCat
 
 @main
 struct PaymentGatewaysAppApp: App {
+    init() {
+        Purchases.configure(withAPIKey: "appl_JBtoeTslddkIDDayVOkOLbFcIky")
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()
