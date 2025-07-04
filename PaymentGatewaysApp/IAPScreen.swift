@@ -67,7 +67,92 @@
 
 
 
-// MARK: ADVANCE
+
+// MARK: ADVANCE 1
+
+//import SwiftUI
+//import RevenueCat
+//
+//struct IAPScreen: View {
+//
+//    @StateObject private var viewModel = IAPViewModel()
+//    @Environment(\.dismiss) var dismiss
+//    @EnvironmentObject var status: SubscriptionStatus
+//    @State private var showAlert: Bool = false
+//    @State private var alertMessage: String = ""
+//
+//    var body: some View {
+//        TabView {
+//            ForEach(viewModel.packagesByTier.sorted(by: { $0.key < $1.key }), id: \.key) { tier, packages in
+//                VStack(alignment: .leading, spacing: 20) {
+//                    Text("\(tier) Package")
+//                        .font(.largeTitle.bold())
+//
+//                    ForEach(packages, id: \.identifier) { package in
+//                        // Show only upgrade/downgrade options based on user's current plan
+//                        if canDisplayPackage(package) {
+//                            Button {
+//                                purchase(package)
+//                            } label: {
+//                                VStack(alignment: .leading) {
+//                                    Text("\(package.storeProduct.localizedTitle)")
+//                                    Text(package.storeProduct.localizedPriceString)
+//                                        .font(.subheadline)
+//                                        .foregroundColor(.gray)
+//                                }
+//                            }
+//                            .padding()
+//                            .background(Color.blue.opacity(0.1))
+//                            .cornerRadius(8)
+//                        }
+//                    }
+//                }
+//                .padding()
+//            }
+//        }
+//        .tabViewStyle(.page(indexDisplayMode: .automatic))
+//        .onAppear {
+//            viewModel.loadOfferings()
+//        }
+//        .alert(isPresented: $showAlert) {
+//            Alert(title: Text("Purchase Status"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+//        }
+//    }
+//
+//    private func canDisplayPackage(_ package: Package) -> Bool {
+//        // Logic to show only upgrade/downgrade options based on user's access level
+//        if status.accessLevel == "Free" {
+//            return true // Free users see all packages
+//        } else if status.accessLevel == "Lite" {
+//            return package.identifier.contains("pro") // Lite user can upgrade to Pro
+//        } else if status.accessLevel == "Pro" {
+//            return package.identifier.contains("lite") // Pro user can downgrade to Lite
+//        }
+//        return false
+//    }
+//
+//    private func purchase(_ package: Package) {
+//        Task {
+//            do {
+//                let result = try await Purchases.shared.purchase(package: package)
+//                let entitlements = result.customerInfo.entitlements.active.keys
+//                if entitlements.contains("pro_access") {
+//                    alertMessage = "You’ve upgraded to Pro!"
+//                } else if entitlements.contains("lite_access") {
+//                    alertMessage = "You’ve upgraded to Lite!"
+//                }
+//                showAlert.toggle()
+//                dismiss()
+//            } catch {
+//                alertMessage = "Purchase failed: \(error.localizedDescription)"
+//                showAlert.toggle()
+//            }
+//        }
+//    }
+//}
+
+
+// MARK: ADVANCE 2
 //
 //  IAPScreen.swift
 //  PaymentGatewaysApp
@@ -242,4 +327,5 @@ struct IAPScreen: View {
 #Preview {
     IAPScreen()
 }
+
 
