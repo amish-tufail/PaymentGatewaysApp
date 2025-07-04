@@ -11,6 +11,7 @@ import RevenueCat
 @main
 struct PaymentGatewaysAppApp: App {
     init() {
+                                        // Project specfic key
         Purchases.configure(withAPIKey: "appl_JBtoeTslddkIDDayVOkOLbFcIky")
     }
     var body: some Scene {

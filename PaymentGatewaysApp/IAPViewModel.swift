@@ -8,6 +8,7 @@
 import Foundation
 import RevenueCat
 
+// MARK: Same for basic and complex case
 final class IAPViewModel: ObservableObject {
     @Published var packagesByTier: [String: [Package]] = [:]
     
