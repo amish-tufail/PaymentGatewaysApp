@@ -60,15 +60,26 @@
 
 import SwiftUI
 import RevenueCatUI
+import RevenueCat
 
 struct ContentView: View {
     @State private var openIAP = false
     @State private var showPaymentSheet: Bool = false
     @StateObject private var status = SubscriptionStatus()
+    
+    
+    // MARK: METADATA FEATURE
+    @State var showText: Bool = false
 
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 20) {
+                // MARK: METADATA FEATURE
+                if showText {
+                    Text("META DATA TEXT SHOWING - ENABLED")
+                } else {
+                    Text("META DATA TEXT NOT SHOWING - DISABLED")
+                }
                 HStack {
                     // Display the duration (Weekly or Yearly) first
                     if let subscriptionPeriod = status.currentSubscriptionPeriod {
@@ -120,13 +131,22 @@ struct ContentView: View {
             }) {
                 IAPScreen()
             }
-            
+            // MARK: PAYWALL FEATURE
             .sheet(isPresented: $showPaymentSheet, onDismiss: {
                 status.checkEntitlement()
             }, content: {
                 PaywallView()
             })
+            // Every time show by entitilment
+//            .presentPaywallIfNeeded(requiredEntitlementIdentifier: "default") // like if i want to display paywall on each open if not subscribed - give the enitilment you wnat to show pro or lite
+            // FOOTER FEATURE
+            .paywallFooter(condensed: true) // false for full view and true for all plan condensed view
             .environmentObject(status)
+            // MARK: META DATA feature attach to each specific offering case
+            .task {
+                guard let result = try? await Purchases.shared.offerings().current else { return }
+                showText = result.getMetadataValue(for: "showText", default: false)
+            }
         }
     }
 }

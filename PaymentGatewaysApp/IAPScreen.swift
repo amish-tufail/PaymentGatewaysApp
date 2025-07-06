@@ -173,6 +173,7 @@ struct IAPScreen: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
+             
             Text("Available Packages")
                 .font(.largeTitle.bold())
 
