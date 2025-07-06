@@ -59,9 +59,11 @@
 //
 
 import SwiftUI
+import RevenueCatUI
 
 struct ContentView: View {
     @State private var openIAP = false
+    @State private var showPaymentSheet: Bool = false
     @StateObject private var status = SubscriptionStatus()
 
     var body: some View {
@@ -101,6 +103,12 @@ struct ContentView: View {
                 Button("Buy Subscription") {
                     openIAP.toggle()
                 }
+                
+                Button {
+                    showPaymentSheet = true
+                } label: {
+                    Text("Show Paywall")
+                }
             }
             .padding()
             .navigationTitle("RC Test")
@@ -112,6 +120,12 @@ struct ContentView: View {
             }) {
                 IAPScreen()
             }
+            
+            .sheet(isPresented: $showPaymentSheet, onDismiss: {
+                status.checkEntitlement()
+            }, content: {
+                PaywallView()
+            })
             .environmentObject(status)
         }
     }
