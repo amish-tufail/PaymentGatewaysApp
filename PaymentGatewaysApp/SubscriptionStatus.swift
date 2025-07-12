@@ -33,7 +33,8 @@
 //    }
 //}
 
-
+// Observes and interprets the user’s entitlement (e.g., “is user Pro?”, “Free?”).
+// Refer Xmind RC 2
 // MARK: ADVANCE
 import Foundation
 import RevenueCat

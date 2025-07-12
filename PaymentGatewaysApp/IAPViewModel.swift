@@ -9,6 +9,8 @@ import Foundation
 import RevenueCat
 
 // MARK: Same for basic and complex case
+// Handles the RevenueCat SDK directly (offers, purchases, upgrades, restores).
+// Refer Xmind RC 2
 final class IAPViewModel: ObservableObject {
     @Published var packagesByTier: [String: [Package]] = [:]
     
